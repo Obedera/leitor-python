@@ -1,2 +1,2 @@
-let a = prompt('didigte');
-alert('a')
+let a = prompt("didigte');
+aler('a')
