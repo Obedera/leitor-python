@@ -27,10 +27,34 @@ def analizar_html(html):
     
     lista_letras = quebrar_por_letra(lista_palavras)
 
-    if lista_letras.count('<') > lista_letras.count('>'):
-        Erros += 'Você esqueceu de colocar ">"\n'
-    if lista_letras.count('<') < lista_letras.count('>'):
-        Erros += 'Você esqueceu de colocar "<"\n'
+    def itens_necessarios():
+        erros = ''
+        #itens por linha
+        
+
+        # itens por palavra
+        if lista_palavras.count('<script') == 1 and lista_palavras.count('defer') == 0:
+            erros += 'Coloque o defer depois do script\n'
+
+        if lista_palavras.count('<body>') == 1 or lista_palavras.count('<body') == 1:
+            pass
+        else:
+            erros += 'Você não colocou o body corretamente\n'
+
+        if lista_palavras.count('<head>') == 1 or lista_palavras.count('<head') == 1:
+            pass
+        else:
+            erros += 'Você não colocou o head corretamente\n'
+            
+
+
+        # itens por letra
+        if lista_letras.count('<') > lista_letras.count('>'):
+            erros += 'Você esqueceu de colocar ">"\n'
+        if lista_letras.count('<') < lista_letras.count('>'):
+            erros += 'Você esqueceu de colocar "<"\n'
+        return erros
+    
 
     def checar_erros_palavra(lista_palavras):
         contador = 0
@@ -41,12 +65,12 @@ def analizar_html(html):
                    
             if lista_palavras[contador] == '<scripts':
                 erros += f'Tem erro na linha {contador+1} o "{lista_palavras[contador]}" está escrito errado\n'
-
+            
             contador += 1
 
         return erros
 
-
+    Erros += itens_necessarios()
     Erros += checar_erros_palavra(lista_palavras)
 
     return Erros
