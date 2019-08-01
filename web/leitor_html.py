@@ -60,6 +60,14 @@ def analizar_html(html):
         contador = 0
         erros = ''
         while contador<len(lista_palavras):
+            if lista_palavras[contador] == '<':
+                erros += f'Tem erro na linha {contador+1} tire o espaçamento do "<" entre o "{lista_palavras[contador+1]}"\n'
+            
+            if lista_palavras[contador][0:7] == 'class="':
+                letras = quebrar_por_letra(lista_palavras[contador])
+                if letras.count('.') == 1:
+                    erros += f'Tem erro na linha {contador+1} tire o "." da classe'
+
             if lista_palavras[contador] == '<bodyy>' or lista_palavras[contador] == '<bodyy':
                 erros += f'Tem erro na linha {contador+1} o "{lista_palavras[contador]}" está escrito errado\n'
                    
