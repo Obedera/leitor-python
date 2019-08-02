@@ -7,9 +7,9 @@ def analizar_html(html):
         contador_linha_html = 0
         palavras = []
         while contador_linha_html<len(linha):
-            palavra = linha[contador_linha_html].split()
-            for i in palavra:
-                palavras.append(i)  
+            linha_palavras = linha[contador_linha_html].split()
+            for palavra in linha_palavras:
+                palavras.append(palavra)  
             contador_linha_html += 1
         return palavras
 
@@ -19,9 +19,9 @@ def analizar_html(html):
         contador_letra_html = 0
         letras = []
         while contador_letra_html<len(lista_palavras):
-            letra = lista_palavras[contador_letra_html]
-            for i in letra:
-                letras.append(i)
+            palavra = lista_palavras[contador_letra_html]
+            for letra in palavra:
+                letras.append(letra)
             contador_letra_html += 1
         return letras
     
